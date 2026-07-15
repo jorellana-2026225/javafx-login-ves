@@ -2,15 +2,17 @@ package com.jairoorellana.controller;
 
 import com.jairoorellana.view.LoginView;
 import com.jairoorellana.controller.LoginController;
+import com.jairoorellana.view.BienvenidaView;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
 
 public class SceneManager {
-
+    
     private Stage escenarioPrincipal;
     private Stage escenarioSecundario;
     private Scene escenaPrincipal;
@@ -23,15 +25,15 @@ public class SceneManager {
         }
         return instanciaSceneManager;
     }
-
+    
     public static void setInstanciaSceneManager(SceneManager instanciaSceneManager) {
         SceneManager.instanciaSceneManager = instanciaSceneManager;
-
+        
     }
-
+    
     public SceneManager() {
     }
-
+    
     public SceneManager(Stage escenarioPrincipal, Stage escenarioSecundario, Scene escenaPrincipal) {
         this.escenarioPrincipal = escenarioPrincipal;
         this.escenarioSecundario = escenarioSecundario;
@@ -39,15 +41,18 @@ public class SceneManager {
     }
 
 //Metodos
-    public void ventanaLogin() {
+    public void ventanaBienvenida() {
         try {
-
-            this.escenarioPrincipal.initStyle(StageStyle.TRANSPARENT);
-            LoginView login = LoginView.getInstanciaLoginView();
-            cambiarEscena(login, 450, 500);
-            this.escenaPrincipal.setFill(Color.TRANSPARENT);
-            new LoginController(login);
-
+            
+            this.escenarioSecundario = new Stage();
+            this.escenarioSecundario.initStyle(StageStyle.TRANSPARENT);
+            this.escenarioSecundario.initModality(Modality.APPLICATION_MODAL);
+            BienvenidaView bienvenida = new BienvenidaView();
+            this.escenaPrincipal = new Scene(bienvenida, 15, 25);
+            this.escenarioSecundario.setScene(escenaPrincipal);
+            this.escenarioSecundario.sizeToScene();
+            this.escenarioSecundario.showAndWait();
+            
         } catch (NullPointerException objetoNulo) {
             JOptionPane.showMessageDialog(null, "Error de Objeto Nulo: Ventana Login");
             objetoNulo.printStackTrace();
@@ -55,17 +60,35 @@ public class SceneManager {
             JOptionPane.showMessageDialog(null, "Error Padre: Ventana Login");
             errorPadre.printStackTrace();
         }
-
     }
-
+    
+    public void ventanaLogin() {
+        try {
+            
+            this.escenarioPrincipal.initStyle(StageStyle.TRANSPARENT);
+            LoginView login = LoginView.getInstanciaLoginView();
+            cambiarEscena(login, 450, 500);
+            this.escenaPrincipal.setFill(Color.TRANSPARENT);
+            new LoginController(login);
+            
+        } catch (NullPointerException objetoNulo) {
+            JOptionPane.showMessageDialog(null, "Error de Objeto Nulo: Ventana Login");
+            objetoNulo.printStackTrace();
+        } catch (Exception errorPadre) {
+            JOptionPane.showMessageDialog(null, "Error Padre: Ventana Login");
+            errorPadre.printStackTrace();
+        }
+        
+    }
+    
     public void cambiarEscena(Pane panel, int ancho, int alto) {
         try {
-
+            
             escenaPrincipal = new Scene(panel, ancho, alto);
             this.escenarioPrincipal.setScene(escenaPrincipal);
             this.escenarioPrincipal.sizeToScene();
             this.escenarioPrincipal.show();
-
+            
         } catch (NullPointerException objetoNulo) {
             JOptionPane.showMessageDialog(null, "Error de Objeto Nulo: Cambiar Escena");
             objetoNulo.printStackTrace();
@@ -74,7 +97,7 @@ public class SceneManager {
             errorPadre.printStackTrace();
         }
     }
-
+    
     public void vistaPrincipal() {
         this.escenarioPrincipal.setTitle("Loguin");
     }
@@ -83,25 +106,25 @@ public class SceneManager {
     public Stage getEscenarioPrincipal() {
         return escenarioPrincipal;
     }
-
+    
     public void setEscenarioPrincipal(Stage escenarioPrincipal) {
         this.escenarioPrincipal = escenarioPrincipal;
     }
-
+    
     public Stage getEscenarioSecundario() {
         return escenarioSecundario;
     }
-
+    
     public void setEscenarioSecundario(Stage escenarioSecundario) {
         this.escenarioSecundario = escenarioSecundario;
     }
-
+    
     public Scene getEscenaPrincipal() {
         return escenaPrincipal;
     }
-
+    
     public void setEscenaPrincipal(Scene escenaPrincipal) {
         this.escenaPrincipal = escenaPrincipal;
     }
-
+    
 }
