@@ -11,13 +11,12 @@ public class LoginController {
     private double ejeX = 0;
     private double ejeY = 0;
     private AuthSistema authSistema = new AuthSistema();
+    private Stage escenarioPrincipal = SceneManager.getInstanciaSceneManager().getEscenarioPrincipal();
 
     public LoginController(LoginView loginView) {
         this.LOGIN_VIEW = loginView;
         construirAcciones();
     }
-
-    private Stage escenarioPrincipal = SceneManager.getInstanciaSceneManager().getEscenarioPrincipal();
 
     public void iniciarSesion() {
         String nombreUsuario = this.LOGIN_VIEW.getTxtNombreUsuario().getText().trim();

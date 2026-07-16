@@ -48,16 +48,16 @@ public class SceneManager {
             this.escenarioSecundario.initStyle(StageStyle.TRANSPARENT);
             this.escenarioSecundario.initModality(Modality.APPLICATION_MODAL);
             BienvenidaView bienvenida = new BienvenidaView();
-            this.escenaPrincipal = new Scene(bienvenida, 15, 25);
+            this.escenaPrincipal = new Scene(bienvenida, 350, 400);
             this.escenarioSecundario.setScene(escenaPrincipal);
             this.escenarioSecundario.sizeToScene();
             this.escenarioSecundario.showAndWait();
             
         } catch (NullPointerException objetoNulo) {
-            JOptionPane.showMessageDialog(null, "Error de Objeto Nulo: Ventana Login");
+            JOptionPane.showMessageDialog(null, "Error de Objeto Nulo: Ventana Bienvenida");
             objetoNulo.printStackTrace();
         } catch (Exception errorPadre) {
-            JOptionPane.showMessageDialog(null, "Error Padre: Ventana Login");
+            JOptionPane.showMessageDialog(null, "Error Padre: Ventana Bienvenida");
             errorPadre.printStackTrace();
         }
     }

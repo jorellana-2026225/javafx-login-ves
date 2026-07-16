@@ -45,22 +45,23 @@ public class LoginView extends BorderPane {
         this.getStylesheets().add(RUTA_ESTILOS + "LoginStyles.css");
         this.setPadding(new Insets(15));
         this.setBorder(new Border(
-                new BorderStroke(Paint.valueOf("#000000"), //Color del borde
-                        BorderStrokeStyle.SOLID, //Estilo del borde
-                        new CornerRadii(22), //Pixeles del redondeado
-                        new BorderWidths(6)) //Ancho del borde
+                new BorderStroke(Paint.valueOf("#62748E"),
+                        BorderStrokeStyle.SOLID,
+                        new CornerRadii(22),
+                        new BorderWidths(6))
         ));
 
         this.setBackground(new Background(
-                new BackgroundFill(Color.GRAY, //Color del fondo
-                        new CornerRadii(25), //Pixeles del redondeado
-                        Insets.EMPTY) //Espaciado del fondo
+                new BackgroundFill(Paint.valueOf("#000000"),
+                        new CornerRadii(25),
+                        Insets.EMPTY)
         ));
 
         barraDeOpciones = new HBox(25);
 
         btnCerrarVentana = new Button("X");
-        lblTituloVentana = new Label("JavaFX - Simulacion Login");
+        lblTituloVentana = new Label("Login - Panchito");
+        lblTituloVentana.setStyle("-fx-text-fill: #FFFFFF;");
 
         barraDeOpciones.getChildren().addAll(btnCerrarVentana, lblTituloVentana);
         this.setTop(barraDeOpciones);
@@ -71,9 +72,11 @@ public class LoginView extends BorderPane {
         formulario = new GridPane();
 
         lblNombreUsuario = new Label("Ingrese su Nombre de Usuario");
+        lblNombreUsuario.setStyle("-fx-text-fill: #FFFFFF;");
         txtNombreUsuario = new TextField();
 
         lblClave = new Label("Ingrese su Contraseña");
+        lblClave.setStyle("-fx-text-fill: #FFFFFF;");
         pwdClave = new PasswordField();
 
         formulario.add(lblNombreUsuario, 0, 0);
@@ -84,7 +87,7 @@ public class LoginView extends BorderPane {
 
         imgLogoLogin = new ImageView(new ImageController().getImageLogin("logo"));
         imgLogoLogin.setFitWidth(100);
-        imgLogoLogin.setFitHeight(100);
+        imgLogoLogin.setFitHeight(90);
         imgLogoLogin.setCache(true);
 
         cajaVertical.setAlignment(Pos.CENTER);

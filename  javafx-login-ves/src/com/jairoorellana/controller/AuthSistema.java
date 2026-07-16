@@ -27,6 +27,7 @@ public class AuthSistema {
         for (Usuario usuarioBuscado : listaUsuarios) {
             if (usuarioBuscado.getNombreUsuario().equals(nombreUsuario)
                     && usuarioBuscado.getPassword().equals(clave)) {
+                return usuarioBuscado;
             }
         }
 
@@ -42,8 +43,6 @@ public class AuthSistema {
     public static void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
         AuthSistema.listaUsuarios = listaUsuarios;
     }
+
     
-
 }
-
- 
